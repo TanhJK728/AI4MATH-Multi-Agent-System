@@ -34,15 +34,21 @@ We keep exact statements and earlier versions because changing an assumption cha
 
 These choices make the reasoning easier to inspect. Whether they improve research outcomes enough to justify the extra work is still an empirical question.
 
-## Cogentic and the need for a benchmark
+## Cogentic, reproducibility, and evaluating the architecture
 
 We wrote the first Theory Lab draft on **September 25, 2026**, before [Cogentic v1](https://arxiv.org/abs/2609.40324v1) appeared on **September 30, 2026**. Theory Lab was developed independently. These dates describe our draft and their public release; they do not establish when Google's internal work began.
 
-Cogentic uses several related ideas, including coordinated proof attempts, adversarial verification, and a record of checked intermediate results. Its paper reports expert-checked results on five research problems.
+Cogentic uses related ideas, including coordinated proof attempts, adversarial verification, and a record of checked intermediate results. Its paper reports expert-checked results on five research problems. These mathematical results deserve attention. They also leave two questions open for readers: how to reproduce the system, and how much its architecture contributes.
 
-We do not find that sufficient to establish the benefit of the architecture itself. The v1 paper does not report a standardized comparative benchmark. It also lacks comparisons against simpler workflows under matched resource budgets, tests of which components matter, and a full record of successful and unsuccessful attempts. Without those comparisons, it is difficult to tell how much the organization contributes beyond the underlying model and the amount of computation used. This criticism concerns the evaluation of the method; it does not dismiss the mathematical results.
+- **The appendix supplies task prompts.** [Appendix A](https://arxiv.org/html/2609.40324v1) shows what the system was asked to investigate. It does not provide the complete role prompts for the orchestrator, provers, and verifiers. Readers trying to rebuild the workflow would still need to supply those instructions.
+- **Important implementation materials are missing from the linked release.** As of **October 3, 2026**, we could not find links to a complete system implementation, full role prompts, run configurations, or execution logs in the v1 paper or its [official project page](https://sites.google.com/view/cogentic). Readers trying to reproduce the system must fill in important implementation details themselves.
+- **Successful cases do not establish the architecture's contribution.** The [v1 paper](https://arxiv.org/html/2609.40324v1) does not report comparisons with simpler workflows under matched resource budgets or experiments that remove individual components. Those comparisons are needed to distinguish gains from the organization of the agents, the underlying model, and additional computation.
 
-The same standard applies to us. We have not yet established a suitable benchmark for Theory Lab's research usefulness. A benchmark is still needed, with strong simpler alternatives, comparable resource budgets, and failures reported alongside successes. Our positive experience is a reason to investigate the workflow, not a substitute for that evidence.
+For Theory Lab, we publish reusable role prompts for the [Builder](protocols/BUILDER.md), [Verifier](protocols/VERIFIER.md), and [Director](protocols/DIRECTOR.md), alongside the [rules for recording claims](protocols/STATUS_POLICY.md) and the [steps for running the workflow](ARCHITECTURE.md). These describe what each agent should do, when it may read another agent's work, and how its conclusions are reviewed. We want readers to be able to inspect, adapt, and implement the design. The repository does not yet include an executable runner.
+
+Our [first-draft manuscript](docs/llm_theory_lab_first_draft.pdf) also proposes ways to test the architecture: compare it with an iterative single agent and an independent panel under common resource limits; vary when agents see each other's work and how review is conducted; grade correctness separately; and report failures alongside successes. The aim is to learn which design choices help, how much they help, and what they cost. We invite others to run these experiments, challenge the comparisons, or propose better evaluations.
+
+The same standard applies to us. **We are sharing prompts and an evaluation proposal; we have not established that Theory Lab outperforms simpler methods.** The proposed model experiments have not been run, and we have not found a satisfactory benchmark for the workflow's practical research value. Our positive experience motivates these tests, but cannot replace them.
 
 ## Try it
 
