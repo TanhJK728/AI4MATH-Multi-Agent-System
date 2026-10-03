@@ -12,7 +12,9 @@ The workflow has been useful in our own research. We recommend trying it, while 
 
 ## How it works
 
-![Theory Lab workflow: the Builder and Verifier work independently from the same material, save their reports, then compare the arguments before the Director reviews the evidence.](assets/theory-lab-workflow.svg)
+The figure shows the configuration proposed for the evaluation in the manuscript. The role instructions describe the more general workflow.
+
+![Theory Lab's proposed evaluation: the Builder and Verifier work independently, save their reports before review, and pass the evidence to the Director. The final report is evaluated separately.](assets/theory-lab-workflow.png)
 
 **The Builder develops the argument.** It makes the statement precise, lists the assumptions, tries to prove it, and looks for ways it might fail.
 
@@ -50,6 +52,26 @@ Start with a bounded task and the same reading material for the Builder and Veri
 - [Verifier instructions](protocols/VERIFIER.md)
 - [Director instructions](protocols/DIRECTOR.md)
 - [How claims are recorded and reviewed](protocols/STATUS_POLICY.md)
-- [Architecture details](ARCHITECTURE.md) and [PDF version](docs/Theory_Lab_Architecture.pdf)
+- [Architecture details](ARCHITECTURE.md)
+- [Full first-draft manuscript: workflow and proposed evaluation](docs/llm_theory_lab_first_draft.pdf)
 
-This repository contains the general architecture and role instructions. It does not include an executable runner. Keeping the agents' work separate requires actual access controls; a prompt alone cannot enforce that. An accepted claim remains open to correction.
+The manuscript retains the original experimental plans: task construction, comparison methods, resource budgets, analysis, and an optional evaluation of longer mathematical arguments. These are proposals, not a completed validation of the workflow. The public revision keeps the original paper format and figures while revising the prose and removing personal details.
+
+This repository contains the architecture, role instructions, and manuscript, but no executable runner. Keeping the agents' work separate requires actual access controls; a prompt alone cannot enforce that. An accepted claim remains open to correction.
+
+## Use these ideas and build on them
+
+We have not found a fully satisfactory way to evaluate the practical research value of a workflow like this. The experiments in the draft are starting points. If you have a better benchmark, a simpler comparison, or a different way to test the design, we welcome you to pursue it.
+
+You are welcome to use and adapt these protocols and configurations, and to run or improve the proposed experiments. If your work builds on them, please cite this repository or the manuscript and identify the version you used. The repository includes a [citation file](CITATION.cff); a BibTeX entry is provided below.
+
+```bibtex
+@misc{theorylab2026,
+  author = {{Theory Lab contributors}},
+  title = {Theory Lab: Multi-Agent Research Protocols and Proposed Evaluation},
+  year = {2026},
+  howpublished = {GitHub repository},
+  url = {https://github.com/TanhJK728/AI4MATH-Multi-Agent-System},
+  note = {First manuscript draft: September 25, 2026; public text revision: October 3, 2026}
+}
+```
