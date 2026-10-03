@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="720" viewBox="0 0 1040 720" role="img" aria-labelledby="title desc">
+  <title id="title">How Theory Lab works</title>
+  <desc id="desc">The Builder and Verifier receive the same material and work independently. Both reports are saved before comparison. The Verifier checks the Builder's argument, then the Director reviews all the evidence and updates the research record. Major changes need a human decision.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#567181"/></marker>
+    <style>
+      .label { font: 600 21px Arial, Helvetica, sans-serif; fill: #15384b; }
+      .detail { font: 17px Arial, Helvetica, sans-serif; fill: #466171; }
+      .small { font: 16px Arial, Helvetica, sans-serif; fill: #466171; }
+      .box { fill: #edf7f6; stroke: #168581; stroke-width: 1.8; }
+      .line { fill: none; stroke: #567181; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect x="1" y="1" width="1038" height="718" rx="18" fill="#ffffff" stroke="#d7e3e8"/>
+  <text x="520" y="45" text-anchor="middle" class="small" letter-spacing="2">HOW THEORY LAB WORKS</text>
+  <rect class="box" x="325" y="70" width="390" height="65" rx="10"/>
+  <text class="label" x="520" y="109" text-anchor="middle">Same starting material</text>
+  <path class="line" d="M435,135 L268,190"/>
+  <path class="line" d="M605,135 L772,190"/>
+  <rect class="box" x="65" y="195" width="405" height="90" rx="10"/>
+  <text class="label" x="267.5" y="231" text-anchor="middle">Builder</text>
+  <text class="detail" x="267.5" y="259" text-anchor="middle">Develop and test an argument</text>
+  <rect class="box" x="570" y="195" width="405" height="90" rx="10"/>
+  <text class="label" x="772.5" y="231" text-anchor="middle">Verifier</text>
+  <text class="detail" x="772.5" y="259" text-anchor="middle">Work through it independently</text>
+  <path class="line" d="M268,285 L432,342"/>
+  <path class="line" d="M772,285 L608,342"/>
+  <rect x="295" y="347" width="450" height="64" rx="10" fill="#f3f5f8" stroke="#9eb2bf" stroke-width="1.5"/>
+  <text class="label" x="520" y="374" text-anchor="middle">Save both reports</text>
+  <text class="detail" x="520" y="397" text-anchor="middle">Then share and compare</text>
+  <path class="line" d="M405,411 L268,464"/>
+  <path class="line" d="M635,411 L772,464"/>
+  <rect class="box" x="65" y="469" width="405" height="85" rx="10"/>
+  <text class="label" x="267.5" y="503" text-anchor="middle">Verifier</text>
+  <text class="detail" x="267.5" y="531" text-anchor="middle">Check the Builder's argument</text>
+  <rect class="box" x="570" y="469" width="405" height="85" rx="10"/>
+  <text class="label" x="772.5" y="503" text-anchor="middle">Director</text>
+  <text class="detail" x="772.5" y="531" text-anchor="middle">Review all the evidence</text>
+  <path class="line" d="M470,512 L565,512"/>
+  <path class="line" d="M772,554 L772,592"/>
+  <rect x="570" y="597" width="405" height="59" rx="10" fill="#15384b"/>
+  <text x="772.5" y="633" text-anchor="middle" style="font:600 21px Arial,Helvetica,sans-serif;fill:#ffffff">Update the research record</text>
+  <text class="small" x="267.5" y="614" text-anchor="middle">Keep the arguments and failed attempts.</text>
+  <text class="small" x="267.5" y="640" text-anchor="middle">Use the updated record in the next round.</text>
+  <text class="small" x="520" y="691" text-anchor="middle">The human researcher decides on major changes and whether to continue.</text>
+</svg>
