@@ -1,5 +1,7 @@
 # Theory Lab
 
+**Authors: Jiaqi Tang and Jingsu Li**
+
 A way to organize LLM-assisted mathematical research around building arguments, checking them independently, and keeping track of what survives.
 
 ## Why we built it
@@ -67,7 +69,7 @@ You are welcome to use and adapt these protocols and configurations, and to run 
 
 ```bibtex
 @misc{theorylab2026,
-  author = {{Theory Lab contributors}},
+  author = {Tang, Jiaqi and Li, Jingsu},
   title = {Theory Lab: Multi-Agent Research Protocols and Proposed Evaluation},
   year = {2026},
   howpublished = {GitHub repository},

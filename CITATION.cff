@@ -2,7 +2,10 @@ cff-version: 1.2.0
 message: "If you use or adapt these protocols, configurations, or evaluation ideas, please cite this repository or its manuscript and identify the version you used."
 title: "Theory Lab: Multi-Agent Research Protocols and Proposed Evaluation"
 authors:
-  - name: "Theory Lab contributors"
+  - family-names: "Tang"
+    given-names: "Jiaqi"
+  - family-names: "Li"
+    given-names: "Jingsu"
 repository-code: "https://github.com/TanhJK728/AI4MATH-Multi-Agent-System"
 url: "https://github.com/TanhJK728/AI4MATH-Multi-Agent-System"
 date-released: "2026-10-03"
