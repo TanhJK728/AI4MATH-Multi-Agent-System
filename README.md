@@ -1,8 +1,6 @@
-# Theory Lab
+# Theory Lab: Multi-Agent AI for Mathematical Research
 
-**Authors: Jiaqi Tang and Jingsu Li**
-
-A way to organize LLM-assisted mathematical research around building arguments, checking them independently, and keeping track of what survives.
+Theory Lab is a multi-agent AI workflow for mathematical research. It gives LLM agents separate roles in developing mathematical arguments, checking proofs independently, and reviewing the evidence. This repository shares the architecture, role instructions, and proposed evaluation.
 
 ## Why we built it
 
@@ -70,7 +68,7 @@ You are welcome to use and adapt these protocols and configurations, and to run 
 ```bibtex
 @misc{theorylab2026,
   author = {Tang, Jiaqi and Li, Jingsu},
-  title = {Theory Lab: Multi-Agent Research Protocols and Proposed Evaluation},
+  title = {Theory Lab: Multi-Agent AI for Mathematical Research},
   year = {2026},
   howpublished = {GitHub repository},
   url = {https://github.com/TanhJK728/AI4MATH-Multi-Agent-System},

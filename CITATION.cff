@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use or adapt these protocols, configurations, or evaluation ideas, please cite this repository or its manuscript and identify the version you used."
-title: "Theory Lab: Multi-Agent Research Protocols and Proposed Evaluation"
+title: "Theory Lab: Multi-Agent AI for Mathematical Research"
 authors:
   - family-names: "Tang"
     given-names: "Jiaqi"
@@ -11,7 +11,9 @@ url: "https://github.com/TanhJK728/AI4MATH-Multi-Agent-System"
 date-released: "2026-10-03"
 abstract: "A workflow for independent argument construction, checking, critical review, and evidence-based synthesis, accompanied by a proposed evaluation. The manuscript contains no model-performance results."
 keywords:
+  - AI agents
   - mathematical research
+  - theorem proving
   - language models
   - multi-agent systems
   - evaluation
