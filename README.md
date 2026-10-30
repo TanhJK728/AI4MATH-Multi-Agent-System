@@ -1,83 +1,187 @@
+<p align="center">
+  <img src="assets/theory-lab-banner.svg" width="100%" alt="Theory Lab — independent reasoning, structured review, measured costs">
+</p>
+
 # Theory Lab: Multi-Agent AI for Mathematical Research
 
-Theory Lab is a multi-agent AI workflow for mathematical research. It gives LLM agents separate roles in developing mathematical arguments, checking proofs independently, and reviewing the evidence. This repository shares the architecture, role instructions, and proposed evaluation.
+Theory Lab organizes mathematical research around a **Builder**, an **independent Verifier**, and a **Director**. We study how their information, continuing context, and exchange of evidence shape the work—and measure the cost of that organization.
 
-## Why we built it
+<p align="center">
+  <a href="docs/llm_theory_lab_first_draft.pdf"><img src="https://img.shields.io/badge/PDF-Theoretical_framework-2563eb?style=for-the-badge" alt="Read the theoretical framework"></a>
+  <a href="docs/llm_theory_lab_empirical_article.pdf"><img src="https://img.shields.io/badge/PDF-Design_%26_results-7c3aed?style=for-the-badge" alt="Read the experimental design and results"></a>
+  <a href="#use-the-workflow"><img src="https://img.shields.io/badge/OPEN-Role_prompts-0f766e?style=for-the-badge" alt="Use the role prompts"></a>
+</p>
 
-In mathematical research, a plausible argument is only the beginning. We still need to check the assumptions, find the step that does not follow, and work out whether a counterexample actually applies. A long conversation can make that work difficult to follow: an early mistake can become an unstated assumption, and a revised claim can quietly take the place of the original one.
+<p align="center">
+  <a href="#two-papers-one-research-program">Papers</a> ·
+  <a href="#method-independent-preparation-then-review">Method</a> ·
+  <a href="#experiment-four-workflows-under-common-limits">Experiment</a> ·
+  <a href="#results-the-cost-of-structured-verification">Results</a> ·
+  <a href="#what-we-learned">Conclusions</a>
+</p>
 
-Theory Lab grew out of a simple idea: give construction and criticism different jobs, let them start independently, and keep a written record of the evidence behind each conclusion.
+<table>
+  <tr>
+    <td align="center" width="25%"><strong>24</strong><br>finite mathematical tasks</td>
+    <td align="center" width="25%"><strong>6</strong><br>task families</td>
+    <td align="center" width="25%"><strong>4</strong><br>compared workflows</td>
+    <td align="center" width="25%"><strong>172</strong><br>completed runs analyzed</td>
+  </tr>
+</table>
 
-The workflow has been useful in our own research. We recommend trying it, while being clear about what that recommendation means: this is personal experience, not a benchmark result.
+**Latest finding:** all 172 completed runs passed the finite-task checker. In matched comparisons, the full workflow used **54.0% more active time than a continuing single agent** and **65.8% more than an independent panel**. Its execution record shows how independently prepared reports reached review and synthesis.
 
-## How it works
+## Two papers, one research program
 
-The figure shows the configuration proposed for the evaluation in the manuscript. The role instructions describe the more general workflow.
+<table>
+  <tr>
+    <th width="50%">01 · Theoretical framework</th>
+    <th width="50%">02 · Experimental design &amp; results</th>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <a href="docs/llm_theory_lab_first_draft.pdf"><img src="assets/framework-paper.png" width="300" alt="First page of the Theory Lab framework paper"></a>
+      <p><strong>Evaluation of LLM Theory Lab</strong><br>Independent verification and evidence-based synthesis</p>
+      <p>The original architecture, role protocols, correction–retention framework, and proposed evaluation.</p>
+      <p><strong>First draft: September 25, 2026</strong><br>Public text revision: October 3, 2026</p>
+      <a href="docs/llm_theory_lab_first_draft.pdf"><strong>Read the framework →</strong></a>
+    </td>
+    <td align="center" valign="top">
+      <a href="docs/llm_theory_lab_empirical_article.pdf"><img src="assets/empirical-paper.png" width="300" alt="First page of the October 30 empirical paper"></a>
+      <p><strong>Evidence Flow and the Cost of Structured Verification</strong><br>LLM Theory Lab</p>
+      <p>The implemented comparison, completed-run results, and observed path of evidence through the agents.</p>
+      <p><strong>October 30, 2026</strong><br>172 completed runs · 24 finite tasks</p>
+      <a href="docs/llm_theory_lab_empirical_article.pdf"><strong>Read the empirical study →</strong></a>
+    </td>
+  </tr>
+</table>
 
-![Theory Lab's proposed evaluation: the Builder and Verifier work independently, save their reports before review, and pass the evidence to the Director. The final report is evaluated separately.](assets/theory-lab-workflow.png)
+## Method: independent preparation, then review
 
-**The Builder develops the argument.** It makes the statement precise, lists the assumptions, tries to prove it, and looks for ways it might fail.
+A plausible argument needs someone to test its assumptions, locate an invalid step, and check whether a counterexample applies. Theory Lab assigns that work to separate roles while preserving the exact statements and evidence they exchange.
 
-**The Verifier starts independently.** It receives the same starting material, but does not see the Builder's current work. It tries its own derivation or looks for a counterexample. Only after both reports are finished and saved does it read the Builder's argument and check it step by step.
+| Role | Research responsibility |
+| :--- | :--- |
+| 🔵 **Builder** | Develop the argument, state its assumptions, and test how it might fail. |
+| 🟢 **Verifier** | Work through the problem independently, save that account, then continue into a critical review of the Builder's report. |
+| 🟣 **Director** | Read the reports and review, resolve disagreements through evidence, and produce the final account. |
 
-**The Director reviews the evidence.** It reads both reports and the later critique, identifies the exact disagreement, and decides what belongs in the shared record. A valid counterexample matters more than agreement between several agents. Significant changes to the research objective go back to the human researcher.
+<p align="center">
+  <img src="assets/theory-lab-workflow.png" width="760" alt="Original Theory Lab architecture: separate Builder and Verifier work, saved reports, critical review, Director synthesis, and independent evaluation">
+</p>
 
-The next round starts from that updated record. Useful lemmas are kept with their assumptions and supporting arguments. Failed attempts are kept too, so the same mistake does not have to be rediscovered.
+*Original framework figure, including the first draft's response allocation. The empirical study implements the role sequence using the four timed stages below.*
 
-## Why these choices might help
+The method combines **independent preparation**, **continuity within a role**, and **explicit report disclosure**. Saving the initial reports lets us distinguish what each investigator found independently from what it learned during review. Versioned claims preserve assumptions, supporting arguments, corrections, and failed attempts.
 
-We separate the first attempts because a checker that sees the proposed proof immediately may follow the same mistaken path. An independent attempt gives the later review a second starting point. This is the reason for the separation, not a claim that separate agents always make independent errors.
+[Architecture and operating rules →](ARCHITECTURE.md)
 
-We delay comparison until both reports are saved so that we can distinguish what each agent found on its own from what it learned during review.
+## Experiment: four workflows under common limits
 
-We keep exact statements and earlier versions because changing an assumption changes the claim. A corrected theorem should not erase the counterexample to the original one. We also distinguish a computational check from a proof: testing a finite set of cases does not establish an unrestricted statement.
+The study assigns **24 tasks × 4 workflows × 2 repeats = 192 assignments**. The empirical paper analyzes **172 completed attempts** using completion status and the batch's existing chronological attempt-selection rule. CTS outcomes are then read from the saved grading results. Twenty assignments fall outside this completed-run analysis.
 
-These choices make the reasoning easier to inspect. Whether they improve research outcomes enough to justify the extra work is still an empirical question.
+| Condition | Stage 1 | Stage 2 | Stage 3 | Stage 4 |
+| :--- | :--- | :--- | :--- | :--- |
+| **S · Single agent** | Solver | Same solver | Same solver | Same solver |
+| **P · Independent panel** | Solver A | Independent Solver B | Integrator | Same Integrator |
+| **F · Full Theory Lab** | Builder | Independent Verifier | Same Verifier reviews both saved reports | Fresh Director |
+| **E · Early disclosure** | Builder | Verifier sees Builder report when available | Same Verifier reviews | Fresh Director |
 
-## Cogentic, reproducibility, and evaluating the architecture
+- **Tasks:** graphs, linear algebra, set systems, states and invariants, probability, and algorithm guarantees. Twelve claims are true and twelve false; starting material includes useful partial work and plausible errors.
+- **Shared limits:** four stages of 480 seconds, up to six computation executions per stage and 24 per run. Repeated roles keep their session; independent roles and repeats start fresh.
+- **Model request:** `gpt-6-astra` with `ultra` reasoning effort, held common across conditions.
+- **Outcome:** Certified Task Success (**CTS**) checks the fixed goal, the required finite evidence, and preservation of the task's scope.
+- **Cost:** recorded active time sums the four solver-stage intervals, including model and tool waits. Allocation, handoff, sealing, and cleanup are measured outside this quantity.
+- **Comparison:** match the same task and repeat, average available repeats within each task, then give each matched task equal weight.
 
-We wrote the first Theory Lab draft on **September 25, 2026**, before [Cogentic v1](https://arxiv.org/abs/2609.40324v1) appeared on **September 30, 2026**. Theory Lab was developed independently. These dates describe our draft and their public release; they do not establish when Google's internal work began.
+## Results: the cost of structured verification
 
-Cogentic uses related ideas, including coordinated proof attempts, adversarial verification, and a record of checked intermediate results. Its paper reports expert-checked results on five research problems. These mathematical results deserve attention. They also leave two questions open for readers: how to reproduce the system, and how much its architecture contributes.
+### 1 · Same completed-run success, different resource use
 
-- **The appendix supplies task prompts.** [Appendix A](https://arxiv.org/html/2609.40324v1) shows what the system was asked to investigate. It does not provide the complete role prompts for the orchestrator, provers, and verifiers. Readers trying to rebuild the workflow would still need to supply those instructions.
-- **Important implementation materials are missing from the linked release.** As of **October 3, 2026**, we could not find links to a complete system implementation, full role prompts, run configurations, or execution logs in the v1 paper or its [official project page](https://sites.google.com/view/cogentic). Readers trying to reproduce the system must fill in important implementation details themselves.
-- **Successful cases do not establish the architecture's contribution.** The [v1 paper](https://arxiv.org/html/2609.40324v1) does not report comparisons with simpler workflows under matched resource budgets or experiments that remove individual components. Those comparisons are needed to distinguish gains from the organization of the agents, the underlying model, and additional computation.
+| Workflow | Completed runs | CTS passes | Mean active time | Mean computation executions |
+| :--- | ---: | ---: | ---: | ---: |
+| **S · Single agent** | 45 | 45/45 | 12.02 min | 5.07 |
+| **P · Independent panel** | 44 | 44/44 | 11.17 min | 5.64 |
+| **F · Full Theory Lab** | 45 | 45/45 | 18.38 min | 7.93 |
+| **E · Early disclosure** | 38 | 38/38 | 18.75 min | 7.71 |
 
-For Theory Lab, we publish reusable role prompts for the [Builder](protocols/BUILDER.md), [Verifier](protocols/VERIFIER.md), and [Director](protocols/DIRECTOR.md), alongside the [rules for recording claims](protocols/STATUS_POLICY.md) and the [steps for running the workflow](ARCHITECTURE.md). These describe what each agent should do, when it may read another agent's work, and how its conclusions are reviewed. We want readers to be able to inspect, adapt, and implement the design. The repository does not yet include an executable runner.
+![Mean active time by stage and mean computation executions for the four workflows, with completed-run sample sizes](assets/workflow-costs.png)
 
-Our [first-draft manuscript](docs/llm_theory_lab_first_draft.pdf) also proposes ways to test the architecture: compare it with an iterative single agent and an independent panel under common resource limits; vary when agents see each other's work and how review is conducted; grade correctness separately; and report failures alongside successes. The aim is to learn which design choices help, how much they help, and what they cost. We invite others to run these experiments, challenge the comparisons, or propose better evaluations.
+**Structured review has a measurable cost.** F and E use about 18–19 active minutes per completed run. The stage breakdown shows how that work is distributed across construction, verification, review, and synthesis. WU1–WU4 denote the four stages in the design table.
 
-The same standard applies to us. **We are sharing prompts and an evaluation proposal; we have not established that Theory Lab outperforms simpler methods.** The proposed model experiments have not been run, and we have not found a satisfactory benchmark for the workflow's practical research value. Our positive experience motivates these tests, but cannot replace them.
+### 2 · The cost difference persists on matched tasks
 
-## Try it
+![Matched task comparisons: F uses more active time than S and P on every matched task average; F and E are closer](assets/paired-costs.png)
 
-Start with a bounded task and the same reading material for the Builder and Verifier. Keep their first attempts separate, save both reports before sharing, and then run the review. Read the Director's conclusions yourself, especially when an assumption or the objective has changed.
+Each point represents a task after averaging its available matched repeats. The dashed line marks equal active time; colors identify the six task families.
 
-- [Builder instructions](protocols/BUILDER.md)
-- [Verifier instructions](protocols/VERIFIER.md)
-- [Director instructions](protocols/DIRECTOR.md)
-- [How claims are recorded and reviewed](protocols/STATUS_POLICY.md)
-- [Architecture details](ARCHITECTURE.md)
-- [Full first-draft manuscript: workflow and proposed evaluation](docs/llm_theory_lab_first_draft.pdf)
+| Matched comparison | Run pairs / tasks | F active-time difference | Relative difference |
+| :--- | ---: | ---: | ---: |
+| **F vs. S** | 43 / 24 | +6.46 min | +54.0% |
+| **F vs. P** | 42 / 24 | +7.37 min | +65.8% |
+| **F vs. E** | 38 / 22 | −0.64 min | −3.4% |
 
-The manuscript retains the original experimental plans: task construction, comparison methods, resource budgets, analysis, and an optional evaluation of longer mathematical arguments. These are proposals, not a completed validation of the workflow. The public revision keeps the original paper format and figures while revising the prose and removing personal details.
+F takes more active time than S and P on **all 24 matched task averages**. F and E are much closer: delayed disclosure averages about 39 seconds less active time in the matched completed runs.
 
-This repository contains the architecture, role instructions, and manuscript, but no executable runner. Keeping the agents' work separate requires actual access controls; a prompt alone cannot enforce that. An accepted claim remains open to correction.
+[Condition summaries](data/condition_summary.csv) · [Matched task means](data/paired_task_means.csv) · [Data definitions](data/README.md)
 
-## Use these ideas and build on them
+## What we learned
 
-We have not found a fully satisfactory way to evaluate the practical research value of a workflow like this. The experiments in the draft are starting points. If you have a better benchmark, a simpler comparison, or a different way to test the design, we welcome you to pursue it.
+1. **For these completed finite tasks, simpler workflows reached the same certified outcome with less active time.** Final CTS is saturated across all four conditions; the measured distinction is cost and work organization.
+2. **The intended evidence path is observable.** All 45 completed F runs preserved both initial reports, continued the same Verifier into review, and delivered both reports to review and synthesis. In 44 runs, the Director also received a completed audit; one audit timed out before a successful final submission.
+3. **Disclosure timing is a concrete experimental variable.** F preserves an independent first account; E exposes the Builder's report earlier when available, as observed in 37 of 38 completed E runs. Their similar costs make this a useful comparison for studying what independent preparation contributes.
 
-You are welcome to use and adapt these protocols and configurations, and to run or improve the proposed experiments. If your work builds on them, please cite this repository or the manuscript and identify the version you used. The repository includes a [citation file](CITATION.cff); a BibTeX entry is provided below.
+The next question is the value of the intermediate work: which errors are corrected, which correct findings survive synthesis, and when the added review effort pays off. Preserved reports and disclosure records provide the objects needed to study those questions.
+
+## Use the workflow
+
+Start with a bounded research task and the same initial material for the Builder and Verifier. Keep their first attempts separate, save both reports, then share them for review. Let the Director trace its conclusions to the arguments and objections.
+
+| Resource | What it provides |
+| :--- | :--- |
+| [Builder prompt](protocols/BUILDER.md) | Construction, assumptions, counterexamples, and reporting |
+| [Verifier prompt](protocols/VERIFIER.md) | Independent preparation followed by critical review |
+| [Director prompt](protocols/DIRECTOR.md) | Evidence-based synthesis and decisions |
+| [Claim records](protocols/STATUS_POLICY.md) | Statement versions, evidence, and review status |
+| [Architecture guide](ARCHITECTURE.md) | Information flow, role permissions, and operating requirements |
+
+The public release includes papers, reusable protocols, and the figure summary data. Implementations need to enforce the access rules described in the architecture guide; an executable experiment runner is not included here.
+
+## Research context
+
+<details>
+<summary><strong>Independent development, Cogentic v1, and evaluating an architecture</strong></summary>
+
+We wrote the first Theory Lab draft on **September 25, 2026**. [Cogentic v1](https://arxiv.org/abs/2609.40324v1) appeared on **September 30, 2026**. Theory Lab was developed independently. These dates describe our draft and their public release; Google's internal development timeline is unknown to us.
+
+Cogentic uses related ideas: coordinated proof attempts, adversarial verification, and a record of checked intermediate results. It reports expert-checked results on five research problems. Our October 3 reading raised three questions about reuse and evaluation:
+
+- [Appendix A](https://arxiv.org/html/2609.40324v1) provides task inputs, while complete prompts for the orchestrator, provers, and verifiers would help readers reconstruct the workflow.
+- As of **October 3, 2026**, we found no links to a complete implementation, full role prompts, run configurations, or execution logs in the v1 paper or [official project page](https://sites.google.com/view/cogentic).
+- The v1 paper does not report simpler-workflow comparisons under matched resource budgets or component ablations. These comparisons would help identify the contribution of the architecture.
+
+Theory Lab makes its role instructions available and follows the original evaluation proposal with a controlled workflow comparison. The October 30 paper reports the observed costs and evidence paths, including the common CTS level across completed runs. We welcome stronger baselines, better tasks, and independent evaluations of when structured verification is useful.
+
+</details>
+
+## Build on this work
+
+Use and adapt the protocols, examine the reported comparisons, or develop a better evaluation. Please cite the repository or the relevant manuscript and identify the version you used. Citation metadata is available in [CITATION.cff](CITATION.cff).
 
 ```bibtex
-@misc{theorylab2026,
+@misc{tang2026theorylab,
   author = {Tang, Jiaqi and Li, Jingsu},
   title = {Theory Lab: Multi-Agent AI for Mathematical Research},
   year = {2026},
   howpublished = {GitHub repository},
-  url = {https://github.com/TanhJK728/AI4MATH-Multi-Agent-System},
-  note = {First manuscript draft: September 25, 2026; public text revision: October 3, 2026}
+  url = {https://github.com/TanhJK728/AI4MATH-Multi-Agent-System}
+}
+
+@techreport{tang2026evidenceflow,
+  author = {Tang, Jiaqi and Li, Jingsu},
+  title = {LLM Theory Lab: Evidence Flow and the Cost of Structured Verification},
+  year = {2026},
+  month = oct,
+  url = {https://github.com/TanhJK728/AI4MATH-Multi-Agent-System/blob/main/docs/llm_theory_lab_empirical_article.pdf}
 }
 ```

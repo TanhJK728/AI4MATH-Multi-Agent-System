@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="330" viewBox="0 0 1280 330" role="img" aria-labelledby="title desc">
+  <title id="title">Theory Lab</title>
+  <desc id="desc">Independent reasoning. Structured review. Measured costs. A research program on multi-agent AI for mathematics.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101d3e"/><stop offset="1" stop-color="#211841"/></linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#60a5fa"/><stop offset=".5" stop-color="#2dd4bf"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#8093bd" opacity=".15"/></pattern>
+  </defs>
+  <rect width="1280" height="330" rx="20" fill="url(#bg)"/>
+  <rect width="1280" height="330" rx="20" fill="url(#dots)"/>
+  <path d="M870 12C940 128 1030 70 1160 174S1280 270 1300 296" fill="none" stroke="#7066b5" stroke-width="1" opacity=".32"/>
+  <path d="M800 0C870 130 1000 160 1130 200S1220 310 1290 330" fill="none" stroke="#4aa2bd" stroke-width="1" opacity=".25"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="62" y="61" fill="#94d9ed" font-size="15" font-weight="700" letter-spacing="3">AI FOR MATHEMATICAL RESEARCH</text>
+    <text x="58" y="151" fill="#f8fafc" font-size="76" font-weight="700" letter-spacing="-2">Theory Lab</text>
+    <text x="62" y="202" fill="#d3dbed" font-size="23">Independent reasoning. Structured review. Measured costs.</text>
+    <rect x="62" y="248" width="112" height="34" rx="17" fill="#1e3a61"/>
+    <text x="118" y="270" text-anchor="middle" fill="#93c5fd" font-size="13" font-weight="700">FRAMEWORK</text>
+    <rect x="186" y="248" width="124" height="34" rx="17" fill="#103e43"/>
+    <text x="248" y="270" text-anchor="middle" fill="#5eead4" font-size="13" font-weight="700">EXPERIMENTS</text>
+    <rect x="322" y="248" width="98" height="34" rx="17" fill="#3b2c65"/>
+    <text x="371" y="270" text-anchor="middle" fill="#d8b4fe" font-size="13" font-weight="700">EVIDENCE</text>
+    <g transform="translate(936 57)">
+      <path d="M40 31V187" fill="none" stroke="url(#line)" stroke-width="3"/>
+      <circle cx="40" cy="31" r="12" fill="#60a5fa"/><text x="68" y="38" fill="#bfdbfe" font-size="20" font-weight="700">Build</text>
+      <circle cx="40" cy="109" r="12" fill="#2dd4bf"/><text x="68" y="116" fill="#99f6e4" font-size="20" font-weight="700">Verify</text>
+      <circle cx="40" cy="187" r="12" fill="#bda2fb"/><text x="68" y="194" fill="#ddd6fe" font-size="20" font-weight="700">Synthesize</text>
+    </g>
+  </g>
+  <rect x="62" y="316" width="1156" height="4" rx="2" fill="url(#line)"/>
+</svg>
