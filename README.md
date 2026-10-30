@@ -13,7 +13,7 @@ Theory Lab organizes mathematical research around a **Builder**, an **independen
 </p>
 
 <p align="center">
-  <a href="#two-papers-one-research-program">Papers</a> ·
+  <a href="#two-papers">Papers</a> ·
   <a href="#method-independent-preparation-then-review">Method</a> ·
   <a href="#experiment-four-workflows-under-common-limits">Experiment</a> ·
   <a href="#results-the-cost-of-structured-verification">Results</a> ·
@@ -31,7 +31,7 @@ Theory Lab organizes mathematical research around a **Builder**, an **independen
 
 **Latest finding:** all 172 completed runs passed the finite-task checker. In matched comparisons, the full workflow used **54.0% more active time than a continuing single agent** and **65.8% more than an independent panel**. Its execution record shows how independently prepared reports reached review and synthesis.
 
-## Two papers, one research program
+## Two papers
 
 <table>
   <tr>
